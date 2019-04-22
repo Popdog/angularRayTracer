@@ -1,20 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="ray-trace-container">
+    <app-ray-tracer [option]="option" [lookFrom]="cameraPosition" [focus]="focus" [numSamples]="samples" [maxDepth]="depth" [useBoundingBox]="useBoundingBox" [visualizeBox]="visualizeBox" [aperture]="aperture" [fov]="fov" [showSphere2]="showSphere2" [showSphere3]="showSphere3"></app-ray-tracer>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div class="options-container">
+    <app-control-group [title]="'Scene'">
+        <app-control-group [title]="'Template'">
+            <div class="input-container"><span class="input-label">Spheres</span><input type="radio" name="scene" checked="true" (change)="onChange('spheres')" /></div>
+            <div class="input-container"><span class="input-label">Cornell Box</span><input type="radio" name="scene" (change)="onChange('cornellBox')" /></div>
+        </app-control-group>
+        <app-control-group [title]="'Items'">
+            <div class="input-container"><span class="input-label">Item 2</span><input [(ngModel)]="showSphere2" type="checkbox" /></div>
+            <div class="input-container"><span class="input-label">Item 3</span><input [(ngModel)]="showSphere3" type="checkbox" /></div>
+        </app-control-group>
+        <div class="input-container"><span class="input-label">Bounding Box </span><input type="checkbox" [(ngModel)]="useBoundingBox" /></div>
+        <div class="input-container"><span class="input-label">Visualize Box </span><input type="checkbox" [(ngModel)]="visualizeBox" /></div>
+    </app-control-group>
+    <app-control-group [title]="'Camera'">
+        <app-control-group [title]="'Look From'">
+            <div class="input-container"><span class="input-label">X ({{cameraX}}):</span><input type="range" step="1" [min]="minX" [max]="maxX" [(ngModel)]="cameraX"></div>
+            <div class="input-container"><span class="input-label">Y ({{cameraY}}):</span><input type="range" step="1" [min]="minY" [max]="maxY" [(ngModel)]="cameraY"></div>
+            <div class="input-container"><span class="input-label">Z ({{cameraZ}}):</span><input type="range" step="1" [min]="minZ" [max]="maxZ" [(ngModel)]="cameraZ"></div>
+            <div class="input-container"><span class="input-label">FOV ({{fov}}):</span><input type="range" step="5" [min]="minFov" [max]="maxFov" [(ngModel)]="fov"></div>
+            <div class="input-container"><span class="input-label">Aperture ({{aperture.toFixed(2)}}):</span><input type="range" step="0.05" [min]="minAperture" [max]="maxAperture" [(ngModel)]="aperture"></div>
+            <div class="input-container"><span class="input-label">Focal Distance ({{focus}}):</span><input type="range" step="10" [min]="minFocus" [max]="maxFocus" [(ngModel)]="focus"></div>
+        </app-control-group>
+    </app-control-group>
+    <app-control-group [title]="'Samples and Depth'">
+        <div class="input-container"><span class="input-label"># of Samples ({{samples}}): </span><input type="range" [min]="minSamples" [max]="maxSamples" [(ngModel)]="samples"></div>
+        <div class="input-container"><span class="input-label">Max Depth ({{depth}}): </span><input type="range" [min]="minDepth" [max]="maxDepth" [(ngModel)]="depth"></div>
+    </app-control-group>
+    <app-control-group [title]="'Optimization'">
+        <div class="input-container"><span class="input-label">Bounding Box </span><input type="checkbox" [(ngModel)]="useBoundingBox" /></div>
+        <div class="input-container"><span class="input-label">Visualize Box </span><input type="checkbox" [(ngModel)]="visualizeBox" /></div>
+    </app-control-group>
+</div>

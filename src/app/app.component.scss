@@ -1,0 +1,21 @@
+:host() {
+    .ray-trace-container {
+        padding: 20px;
+        vertical-align: top;
+        display: inline-block;
+    }
+    .options-container {
+        padding: 20px;
+        vertical-align: top;
+        display: inline-block;
+        .input-container {
+            display: block;
+            width: 300px;
+            .input-label {
+                display: inline-block;
+                width: 150px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
